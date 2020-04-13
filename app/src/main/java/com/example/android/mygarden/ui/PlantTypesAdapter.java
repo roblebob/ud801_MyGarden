@@ -92,8 +92,8 @@ public class PlantTypesAdapter extends RecyclerView.Adapter<PlantTypesAdapter.Pl
 
         public PlantViewHolder(View itemView) {
             super(itemView);
-            plantImageView = (ImageView) itemView.findViewById(R.id.plant_type_image);
-            plantTypeText = (TextView) itemView.findViewById(R.id.plant_type_text);
+            plantImageView = itemView.findViewById(R.id.plant_type_image);
+            plantTypeText = itemView.findViewById(R.id.plant_type_text);
         }
 
     }
