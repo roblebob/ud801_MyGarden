@@ -38,11 +38,7 @@ public class PlantUtils {
 
     public enum PlantStatus {ALIVE, DYING, DEAD}
 
-    ;
-
     public enum PlantSize {TINY, JUVENILE, FULLY_GROWN}
-
-    ;
 
     /**
      * Returns the corresponding image resource of the plant given the plant's age and

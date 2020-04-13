@@ -20,12 +20,14 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.LoaderManager;
-import android.support.v4.content.CursorLoader;
-import android.support.v4.content.Loader;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.loader.app.LoaderManager;
+import androidx.loader.content.CursorLoader;
+import androidx.loader.content.Loader;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -50,14 +52,14 @@ public class MainActivity
         setContentView(R.layout.activity_main);
 
         // The main activity displays the garden as a grid layout recycler view
-        mGardenRecyclerView = (RecyclerView) findViewById(R.id.plants_list_recycler_view);
+        mGardenRecyclerView = findViewById(R.id.plants_list_recycler_view);
         mGardenRecyclerView.setLayoutManager(
                 new GridLayoutManager(this, 4)
         );
         mAdapter = new PlantListAdapter(this, null);
         mGardenRecyclerView.setAdapter(mAdapter);
 
-        getSupportLoaderManager().initLoader(GARDEN_LOADER_ID, null, this);
+        LoaderManager.getInstance(this).initLoader(GARDEN_LOADER_ID, null, this);
     }
 
     @Override
@@ -68,18 +70,18 @@ public class MainActivity
     }
 
     @Override
-    public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
+    public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor cursor) {
         cursor.moveToFirst();
         mAdapter.swapCursor(cursor);
     }
 
     @Override
-    public void onLoaderReset(Loader loader) {
+    public void onLoaderReset(@NonNull Loader loader) {
 
     }
 
     public void onPlantClick(View view) {
-        ImageView imgView = (ImageView) view.findViewById(R.id.plant_list_item_image);
+        ImageView imgView = view.findViewById(R.id.plant_list_item_image);
         long plantId = (long) imgView.getTag();
         Intent intent = new Intent(getBaseContext(), PlantDetailActivity.class);
         intent.putExtra(PlantDetailActivity.EXTRA_PLANT_ID, plantId);

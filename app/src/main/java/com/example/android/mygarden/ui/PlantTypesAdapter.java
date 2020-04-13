@@ -19,7 +19,7 @@ package com.example.android.mygarden.ui;
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -92,8 +92,8 @@ public class PlantTypesAdapter extends RecyclerView.Adapter<PlantTypesAdapter.Pl
 
         public PlantViewHolder(View itemView) {
             super(itemView);
-            plantImageView = (ImageView) itemView.findViewById(R.id.plant_type_image);
-            plantTypeText = (TextView) itemView.findViewById(R.id.plant_type_text);
+            plantImageView = itemView.findViewById(R.id.plant_type_image);
+            plantTypeText = itemView.findViewById(R.id.plant_type_text);
         }
 
     }

@@ -16,7 +16,7 @@
     limitations under the License.
 -->
 
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -29,11 +29,12 @@
         android:id="@+id/plant_age"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/water_meter"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.1"
-        app:layout_constraintLeft_toLeftOf="parent">
+        app:layout_constraintVertical_bias="0.1">
+
         <include layout="@layout/plant_age" />
     </RelativeLayout>
 
@@ -53,7 +54,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintVertical_bias="0.1"
         app:layout_constraintLeft_toRightOf="@+id/plant_age"
         app:layout_constraintRight_toRightOf="parent">
@@ -99,38 +100,38 @@
 
 
 
-    <android.support.design.widget.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/back_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/fab_margin"
         android:onClick="onBackButtonClick"
-        android:src="@drawable/arrow_back_white"
+        app:srcCompat="@drawable/arrow_back_white"
         app:fabSize="auto"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent" />
 
-    <android.support.design.widget.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/water_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/fab_margin"
         android:onClick="onWaterButtonClick"
-        android:src="@drawable/water_drop_white"
+        app:srcCompat="@drawable/water_drop_white"
         app:fabSize="auto"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@+id/back_button"
         app:layout_constraintRight_toLeftOf="@+id/reset_button" />
 
-    <android.support.design.widget.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/reset_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/fab_margin"
         android:onClick="onCutButtonClick"
-        android:src="@drawable/cut_white"
+        app:srcCompat="@drawable/cut_white"
         app:fabSize="auto"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

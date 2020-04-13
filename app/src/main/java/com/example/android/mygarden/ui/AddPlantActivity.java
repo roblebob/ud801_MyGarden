@@ -18,9 +18,9 @@ package com.example.android.mygarden.ui;
 
 import android.content.ContentValues;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -38,7 +38,7 @@ public class AddPlantActivity extends AppCompatActivity {
 
         // Plant types are displayed as a recycler view using PlantTypesAdapter
         mTypesAdapter = new PlantTypesAdapter(this);
-        mTypesRecyclerView = (RecyclerView) findViewById(R.id.plant_types_recycler_view);
+        mTypesRecyclerView = findViewById(R.id.plant_types_recycler_view);
         mTypesRecyclerView.setLayoutManager(
                 new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         );
@@ -55,7 +55,7 @@ public class AddPlantActivity extends AppCompatActivity {
         // When the chosen plant type is clicked, create a new plant and set the creation time and
         // water time to now
         // Extract the plant type from the tag
-        ImageView imgView = (ImageView) view.findViewById(R.id.plant_type_image);
+        ImageView imgView = view.findViewById(R.id.plant_type_image);
         int plantType = (int) imgView.getTag();
         long timeNow = System.currentTimeMillis();
         // Insert the new plant into DB

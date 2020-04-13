@@ -21,10 +21,11 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.LoaderManager;
-import android.support.v4.content.CursorLoader;
-import android.support.v4.content.Loader;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.loader.app.LoaderManager;
+import androidx.loader.content.CursorLoader;
+import androidx.loader.content.Loader;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -49,7 +50,8 @@ public class PlantDetailActivity extends AppCompatActivity
         setContentView(R.layout.activity_plant_detail);
         mPlantId = getIntent().getLongExtra(EXTRA_PLANT_ID, PlantContract.INVALID_PLANT_ID);
         // This activity displays single plant information that is loaded using a cursor loader
-        getSupportLoaderManager().initLoader(SINGLE_LOADER_ID, null, this);
+        //getSupportLoaderManager().initLoader(SINGLE_LOADER_ID, null, this);
+        LoaderManager.getInstance(this).initLoader(SINGLE_LOADER_ID, null, this);
     }
 
     public void onBackButtonClick(View view) {
