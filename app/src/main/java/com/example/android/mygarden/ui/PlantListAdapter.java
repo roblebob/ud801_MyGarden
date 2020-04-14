@@ -18,12 +18,13 @@ package com.example.android.mygarden.ui;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.android.mygarden.R;
 import com.example.android.mygarden.provider.PlantContract.PlantEntry;
@@ -62,23 +63,25 @@ public class PlantListAdapter extends RecyclerView.Adapter<PlantListAdapter.Plan
     @Override
     public void onBindViewHolder(PlantViewHolder holder, int position) {
 
-        mCursor.moveToPosition(position);
-        int idIndex = mCursor.getColumnIndex(PlantEntry._ID);
-        int createTimeIndex = mCursor.getColumnIndex(PlantEntry.COLUMN_CREATION_TIME);
-        int waterTimeIndex = mCursor.getColumnIndex(PlantEntry.COLUMN_LAST_WATERED_TIME);
-        int plantTypeIndex = mCursor.getColumnIndex(PlantEntry.COLUMN_PLANT_TYPE);
+        if (!mCursor.isClosed()) {
+            mCursor.moveToPosition(position);
+            int idIndex = mCursor.getColumnIndex(PlantEntry._ID);
+            int createTimeIndex = mCursor.getColumnIndex(PlantEntry.COLUMN_CREATION_TIME);
+            int waterTimeIndex = mCursor.getColumnIndex(PlantEntry.COLUMN_LAST_WATERED_TIME);
+            int plantTypeIndex = mCursor.getColumnIndex(PlantEntry.COLUMN_PLANT_TYPE);
 
-        long plantId = mCursor.getLong(idIndex);
-        int plantType = mCursor.getInt(plantTypeIndex);
-        long createdAt = mCursor.getLong(createTimeIndex);
-        long wateredAt = mCursor.getLong(waterTimeIndex);
-        long timeNow = System.currentTimeMillis();
+            long plantId = mCursor.getLong(idIndex);
+            int plantType = mCursor.getInt(plantTypeIndex);
+            long createdAt = mCursor.getLong(createTimeIndex);
+            long wateredAt = mCursor.getLong(waterTimeIndex);
+            long timeNow = System.currentTimeMillis();
 
-        int imgRes = PlantUtils.getPlantImageRes(mContext, timeNow - createdAt, timeNow - wateredAt, plantType);
+            int imgRes = PlantUtils.getPlantImageRes(mContext, timeNow - createdAt, timeNow - wateredAt, plantType);
 
-        holder.plantImageView.setImageResource(imgRes);
-        holder.plantNameView.setText(String.valueOf(plantId));
-        holder.plantImageView.setTag(plantId);
+            holder.plantImageView.setImageResource(imgRes);
+            holder.plantNameView.setText(String.valueOf(plantId));
+            holder.plantImageView.setTag(plantId);
+        }
     }
 
     public void swapCursor(Cursor newCursor) {
